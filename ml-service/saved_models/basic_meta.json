@@ -1,0 +1,12 @@
+{
+  "lr_f1": 0.3919,
+  "nb_f1": 0.337,
+  "classes": [
+    "safe",
+    "phishing",
+    "honeytrap",
+    "scam",
+    "malware"
+  ],
+  "n_features": 35
+}

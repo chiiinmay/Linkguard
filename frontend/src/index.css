@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { @apply bg-ink text-brand-light antialiased; }
+  ::selection { @apply bg-lime text-ink; }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { @apply bg-ink-2; }
+  ::-webkit-scrollbar-thumb { @apply bg-ink-4 rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-brand-muted; }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-full
+           bg-lime text-ink font-display font-bold text-sm
+           transition-all duration-150
+           hover:-translate-y-0.5 hover:shadow-lime;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-full
+           bg-white/5 text-white border border-white/10 font-display font-semibold text-sm
+           transition-all duration-150
+           hover:bg-white/10 hover:border-white/25;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg
+           text-brand-muted font-medium text-sm
+           transition-colors duration-150
+           hover:text-white hover:bg-white/5;
+  }
+  .card {
+    @apply bg-ink-2 border border-white/[0.06] rounded-2xl;
+  }
+  .card-hover {
+    @apply transition-all duration-200 hover:-translate-y-1 hover:border-lime/25;
+  }
+  .input-base {
+    @apply w-full bg-ink-3 border border-white/10 rounded-xl px-4 py-3
+           text-white placeholder-brand-muted text-sm font-body
+           outline-none transition-colors duration-200
+           focus:border-lime/60;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold;
+  }
+  .badge-safe   { @apply bg-emerald-500/10 text-emerald-400 border border-emerald-500/20; }
+  .badge-warn   { @apply bg-amber-500/10   text-amber-400   border border-amber-500/20;   }
+  .badge-danger { @apply bg-coral/10       text-coral       border border-coral/20;        }
+  .badge-info   { @apply bg-cyan/10        text-cyan        border border-cyan/20;         }
+
+  .section-eyebrow {
+    @apply font-display text-xs font-bold tracking-[3px] uppercase text-lime mb-3;
+  }
+  .section-title {
+    @apply font-display text-4xl font-extrabold text-white leading-tight tracking-tight;
+  }
+}
+
+@layer utilities {
+  .text-gradient-lime {
+    @apply bg-gradient-to-r from-lime to-cyan bg-clip-text text-transparent;
+  }
+  .glow-lime { box-shadow: 0 0 60px rgba(198,241,53,0.2); }
+  .noise-overlay {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+  }
+}
+
+/* Recharts override */
+.recharts-tooltip-wrapper { @apply !outline-none; }
+.recharts-default-tooltip { @apply !bg-ink-3 !border-white/10 !rounded-xl !text-sm; }
