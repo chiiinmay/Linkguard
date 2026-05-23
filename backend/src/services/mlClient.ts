@@ -27,7 +27,7 @@ export async function callMLService(payload: MLPayload): Promise<MLResponse> {
     console.log("➡️ Payload:", payload)
 
     const { data } = await axios.post(
-      "http://127.0.0.1:8000/predict",   // 🔥 force correct URL
+      `${ML_URL}/predict`,
       {
         url: payload.url,
         domain_age_days: Number(payload.domain_age_days) || 0,
