@@ -16,7 +16,7 @@ app.use(helmet())
 // ── CORS ──────────────────────────────────────────────────────────
 app.use(cors({
   origin: process.env.NODE_ENV === 'production'
-    ? ['https://linkguard.ai']
+    ? ['https://linkguard.ai', 'https://frontend-chiiinmays-projects.vercel.app', 'https://frontend-26mosfnxw-chiiinmays-projects.vercel.app']
     : ['http://localhost:5173', 'http://127.0.0.1:5173'],
   credentials: true,
 }))
