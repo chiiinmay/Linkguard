@@ -3,7 +3,7 @@ services:
     name: linkguard-ml
     env: docker
     dockerContext: ./ml-service
-    dockerfilePath: Dockerfile
+    dockerfilePath: ./ml-service/Dockerfile
     plan: free
     region: ohio
     envVars:
