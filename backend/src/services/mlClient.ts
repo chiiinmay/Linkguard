@@ -30,15 +30,15 @@ export async function callMLService(payload: MLPayload): Promise<MLResponse> {
       `${ML_URL}/predict`,
       {
         url: payload.url,
-        domain_age_days: Number(payload.domain_age_days) || 0,
-        redirect_count: Number(payload.redirect_count) || 0,
+        domain_age_days: payload.domain_age_days !== undefined ? Number(payload.domain_age_days) : -1,
+        redirect_count: payload.redirect_count !== undefined ? Number(payload.redirect_count) : 0,
         model: payload.model || "basic"
       },
       {
         headers: {
           "Content-Type": "application/json"
         },
-        timeout: 30000
+        timeout: 60000
       }
     )
 

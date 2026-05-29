@@ -53,7 +53,7 @@ export async function performScan(opts: ScanOptions): Promise<ScanRecord> {
   // Call the ML service with the gathered data
   const mlResult = await callMLService({
     url,
-    domain_age_days: domain_age_days ?? 0,
+    domain_age_days: domain_age_days ?? -1,
     redirect_count,
     model
   })
