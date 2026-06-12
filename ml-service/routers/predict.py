@@ -181,6 +181,26 @@ async def predict(req: PredictRequest, request: Request):
 
     predicted_class = int(preds[0])
     class_proba     = proba[0]     # shape (5,)
+
+    # ── Rule-based overrides for obvious threats ──────────────────
+    is_risky_tld = bool(X[0, 12])
+    keyword_count = int(X[0, 20])
+    
+    if predicted_class == 0:
+        # If it's safe but has risky TLD + multiple spammy keywords, flag it
+        if is_risky_tld and keyword_count >= 2:
+            url_lower = req.url.lower()
+            if any(k in url_lower for k in ["meet", "single", "chat", "hot", "date", "hookup"]):
+                predicted_class = 2  # honeytrap
+                class_proba = np.array([0.05, 0.1, 0.7, 0.1, 0.05])
+            else:
+                predicted_class = 3  # scam
+                class_proba = np.array([0.05, 0.1, 0.05, 0.7, 0.1])
+        # Or if it just has an overwhelming amount of suspicious keywords
+        elif keyword_count >= 3:
+            predicted_class = 3  # scam
+            class_proba = np.array([0.05, 0.1, 0.05, 0.7, 0.1])
+
     confidence      = float(class_proba[predicted_class])
     threat_score    = _score_from_proba(class_proba)
 

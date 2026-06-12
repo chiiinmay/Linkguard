@@ -24,7 +24,8 @@ SUSPICIOUS_KEYWORDS = [
     "banking", "password", "credential", "signin", "wallet",
     "free", "winner", "prize", "gift", "claim", "reward",
     "urgent", "alert", "suspended", "limited", "expire",
-    "meet", "single", "date", "chat", "hot", "adult",
+    "meet", "single", "date", "chat", "hot", "adult", "hookup",
+    "casino", "bet", "betting", "poker", "slots", "gamble", "jackpot",
 ]
 
 # ── High-risk TLDs ────────────────────────────────────────────────
